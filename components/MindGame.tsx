@@ -90,7 +90,7 @@ export default function MindGame() {
         onClick={resetMatch}
         className="mt-10 px-8 py-3 text-lg sm:text-xl font-semibold rounded-full bg-linear-to-r from-blue-500 to-purple-600 hover:from-purple-500 hover:to-pink-500 transition-all duration-300 shadow-md hover:shadow-2xl text-white"
       >
-        🔁 Reset Game
+        Reset Game
       </button>
     </div>
   );
