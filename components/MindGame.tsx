@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -19,7 +18,7 @@ const generateDeck = () => {
 };
 
 export default function MindGame() {
-  const [cards, setCards] = useState<string[]>(generateDeck());
+  const [cards, setCards] = useState<string[]>(generateDeck);
   const [flipped, setFlipped] = useState<number[]>([]);
   const [solved, setSolved] = useState<number[]>([]);
 
@@ -37,7 +36,7 @@ export default function MindGame() {
     }
   }, [cards, flipped, solved]);
 
-  const handleClick = (index: number) => {
+  const checkCard = (index: number) => {
     if (!flipped.includes(index) && flipped.length < 2) {
       setFlipped([...flipped, index]);
     }
@@ -45,50 +44,50 @@ export default function MindGame() {
 
   const matchWinner = solved.length === cards.length;
 
-  const resetMatch = () => {
+  const restartMatch = () => {
     setCards(generateDeck());
     setFlipped([]);
     setSolved([]);
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden bg-black">
+      <h1 className="text-red-400 text-4xl font-bold font-mono mt-4 mb-4">
+        Mind <span className="text-yellow-300">Game</span>
+      </h1>
+
       {matchWinner && (
-        <h2 className="text-3xl md:text-4xl font-bold text-green-400 mb-6 animate-bounce">
-          🎉 You Won!!!
-        </h2>
+        <h2 className="text-green-500 text-2xl mb-4 ml-9 font-bold font-mono">You Won!! 🎉</h2>
       )}
 
-      {/* Responsive Grid */}
-      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+      <div className="grid grid-cols-3 md:grid-cols-4 gap-5 mb-4">
         {cards.map((card, index) => (
           <div
             key={index}
-            onClick={() => handleClick(index)}
-            className={`relative flex justify-center items-center text-white text-4xl sm:text-5xl font-bold w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 cursor-pointer border border-gray-600 rounded-2xl shadow-lg transition-transform duration-500 transform hover:scale-105 hover:shadow-2xl ${
+            className={`w-24 h-24 md:w-32 md:h-32 relative border border-gray-600 rounded-2xl cursor-pointer text-white flex justify-center items-center font-bold text-4xl transition-transform duration-300 ease-in-out ${
               flipped.includes(index) || solved.includes(index)
-                ? "rotate-y-180 bg-gray-700"
-                : "bg-gray-900"
+                ? "rotate-180"
+                : ""
             }`}
+            onClick={() => checkCard(index)}
           >
             {flipped.includes(index) || solved.includes(index) ? (
               <Image
                 src={`/memory-card/${card}.jpg`}
                 fill
-                alt="memory card"
-                className="object-cover rounded-2xl"
+                alt="cards"
+                className="rounded-2xl rotate-180 object-cover"
               />
             ) : (
-              <span className="select-none">?</span>
+              "?"
             )}
           </div>
         ))}
       </div>
 
-      {/* Stylish Button */}
       <button
-        onClick={resetMatch}
-        className="mt-10 px-8 py-3 text-lg sm:text-xl font-semibold rounded-full bg-linear-to-r from-blue-500 to-purple-600 hover:from-purple-500 hover:to-pink-500 transition-all duration-300 shadow-md hover:shadow-2xl text-white"
+        onClick={restartMatch}
+        className="text-red-700 text-xl bg-slate-200  border border-gray-400 font-bold cursor-pointer outline-none px-6 py-2 rounded-lg hover:bg-red-700 hover:text-white"
       >
         Reset Game
       </button>
