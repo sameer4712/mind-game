@@ -51,8 +51,8 @@ export default function MindGame() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden ">
-      <h1 className="text-red-400 text-4xl font-bold font-mono mt-4 mb-4">
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
+      <h1 className="text-red-500 text-4xl font-bold font-mono mt-4 mb-4">
         Mind <span className="text-yellow-300">Game</span>
       </h1>
 
@@ -64,7 +64,7 @@ export default function MindGame() {
         {cards.map((card, index) => (
           <div
             key={index}
-            className={`w-24 h-24 md:w-32 md:h-32 relative border bg-slate-700 border-gray-600 rounded-3xl font-mono cursor-pointer text-amber-50 flex justify-center items-center font-bold text-5xl transition-transform duration-300 ease-in-out ${flipped.includes(index) || solved.includes(index)
+            className={`w-24 h-24 md:w-32 md:h-32 relative border bg-slate-700 border-gray-400 rounded-3xl font-mono cursor-pointer text-amber-50 flex justify-center items-center font-bold text-5xl transition-transform duration-300 ease-in-out ${flipped.includes(index) || solved.includes(index)
                 ? "rotate-180"
                 : ""
               }`}
