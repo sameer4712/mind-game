@@ -33,6 +33,7 @@ export default function MindGame() {
       setFlipped([]);
     };
 
+    
     if (flipped.length === 2) {
       setTimeout(() => checkResult(), 1000);
     }
